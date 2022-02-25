@@ -1,0 +1,26 @@
+{
+  "name": "invoke-before-after",
+  "version": "1.0.0",
+  "description": "a wrapper around your objects to invoke your methods by just their names",
+  "main": "./dist/src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node ./dist/src/index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "proxy",
+    "invoke after",
+    "invoke before",
+    "invoke each",
+    "watch"
+  ],
+  "author": "Ahmed Elwerdany",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.5"
+  }
+}
