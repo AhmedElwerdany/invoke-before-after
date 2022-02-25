@@ -1,6 +1,6 @@
 {
   "name": "invoke-before-after",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a wrapper around your objects to invoke your methods by just their names",
   "main": "./dist/src/index.js",
   "type": "commonjs",
@@ -17,10 +17,16 @@
   ],
   "author": "Ahmed Elwerdany",
   "license": "ISC",
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedElwerdany/invoke-before-after.git"
+  },
+  "homepage": "https://github.com/AhmedElwerdany/invoke-before-after#readme"
 }
