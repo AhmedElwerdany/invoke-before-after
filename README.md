@@ -44,14 +44,14 @@ with objects :
 ```javascript
 import {invokeMeWrapper} from 'invoke-before-after'
 
-const developer = {
+const developer = invokeMeWrapper({
     sleep: function () {
       console.log('**sleeping**')
     },
     invokeBeforeSleep: function() {
       console.log('**yawning**')
     }
-}
+})
 
 developer.sleep()
 
