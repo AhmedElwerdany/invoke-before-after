@@ -1,4 +1,4 @@
-import { bind, camleCase, invokeSafe, join } from "./helpers.js";
+import { bind, camleCase, invokeSafe, join } from "./helpers";
 /**
  * 🟢 Wrapper for class
  * 🟢 Wrapper for an object
