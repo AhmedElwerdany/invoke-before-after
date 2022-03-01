@@ -1,6 +1,6 @@
 {
   "name": "invoke-before-after",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "tell your methods when to invoke by just naming them",
   "main": "./dist/src/index.d.ts",
   "type": "commonjs",
@@ -20,7 +20,14 @@
     "invoke after",
     "invoke before",
     "invoke each",
-    "watch"
+    "watch",
+    "function",
+    "call",
+    "apply",
+    "bind",
+    "method",
+    "class",
+    "invoke"
   ],
   "author": "Ahmed Elwerdany",
   "license": "MIT",
