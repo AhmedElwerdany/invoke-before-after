@@ -1,3 +1,7 @@
+![Codecov Coverage](https://img.shields.io/codecov/c/github/AhmedElwerdany/invoke-before-after)
+![npm](https://img.shields.io/npm/v/invoke-before-after)
+![GitHub Repo stars](https://img.shields.io/github/stars/AhmedElwerdany/invoke-before-after?style=social)
+
 # invoke-before-after
 tell your methods when to invoke by just naming them
 ## Installing
