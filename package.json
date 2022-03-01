@@ -1,6 +1,6 @@
 {
   "name": "invoke-before-after",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a wrapper around your objects to invoke your methods by just their names",
   "main": "./dist/src/index.js",
   "type": "commonjs",
@@ -22,7 +22,7 @@
     "watch"
   ],
   "author": "Ahmed Elwerdany",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^27.4.1",
