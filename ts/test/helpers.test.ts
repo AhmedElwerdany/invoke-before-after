@@ -39,6 +39,9 @@ describe('helpers should work correctly' , () => {
             expect(bind(fn,{}).name).toBe('bound fn')
             expect(bind(() => {}, {}).name).toBe('bound ')
         })
+        it('should throw an error if a non-function type get passed' , () => {
+            expect(bind(undefined, {} , [])).toThrowError('expected a function, recived undefined')
+        } )
         // ? testing a function with no arguments and "thisArg"
         function noArgNoThis() {
 
@@ -52,7 +55,6 @@ describe('helpers should work correctly' , () => {
         // expect(bind(fn2, {title : 'title'}, ['ahmed'])()).toBe('title ahmed')
         
         // expect(bind(fn2, {}, [1,2])()).toBe('undefined 1')
-        // expect(bind(undefined, {} , [])).toThrowError('expected a function, recived undefined')
         
     })
 

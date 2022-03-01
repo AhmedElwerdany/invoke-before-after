@@ -6,10 +6,12 @@ export const invokeSafe = (fn: Function): void => {
 }
 
 export const bind = (fn: Function, reciver: Object, args: any[] = []): Function => {
-    if (typeof fn === 'function')
+    if (typeof fn === 'function') {
         return fn.bind(reciver, ...args)
-    else
+    }
+    else {
         return () => { throw new Error('expected a function, recived ' + typeof fn) }
+    }
 }
 
 export const camleCase = (string: string): string => {
