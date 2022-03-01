@@ -7,22 +7,22 @@ tell your methods when to invoke by just naming them
 ## Installing
 Using npm:
 
-``
-$ npm install invoke-before-after
-``
+```
+npm install invoke-before-after
+```
 
 ## API
 ##### invokeMeWrapper(target [, options])
 - `target` A class or object that its methods should be proxied
-- `options` [Options](#invokeMeWrapper-options) to customize **invokeMeWrapper**
+- `options` <a href="#invokeMeWrapper-options">Options</a> to customize **invokeMeWrapper**
 
 
-#### <a name="invokeMeWrapper-options"></a>options : 
+#### <a name="invokeMeWrapper-options">options</a> : 
 
 | key |  description | default |
  -----|--------| --------|
-| invokeAfterName| the prefix of the method that should be invoked **after** the original method . [(see examples)](#options-examples) |invokeAfter|
-| invokeBeforeName|the prefix of the method that should be invoked **before** the original method . [(see examples)](#options-examples)|invokeBefore|
+| invokeAfterName| the prefix of the method that should be invoked **after** the original method . <a href="#with-options">(see examples)</a> |invokeAfter|
+| invokeBeforeName|the prefix of the method that should be invoked **before** the original method .  <a href="#with-options">(see examples)</a>|invokeBefore|
 
 ## Example
 with classes :
@@ -82,7 +82,7 @@ developer.sleep()
 // **sleeping**
 ```
 
-with options: <a name='options-examples'></a>
+<a id="with-options">with options</a>
 ```javascript
 class User {
     sayHi() {
