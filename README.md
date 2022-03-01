@@ -1,5 +1,5 @@
 # invoke-before-after
-a wrapper around your objects to invoke your methods by just their names
+tell your methods when to invoke by just naming them
 ## Installing
 Using npm:
 

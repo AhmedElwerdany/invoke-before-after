@@ -1,7 +1,7 @@
 {
   "name": "invoke-before-after",
-  "version": "1.0.5",
-  "description": "a wrapper around your objects to invoke your methods by just their names",
+  "version": "1.0.6",
+  "description": "tell your methods when to invoke by just naming them",
   "main": "./dist/src/index.d.ts",
   "type": "commonjs",
   "types": "./dist/src/index.js",
