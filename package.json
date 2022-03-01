@@ -1,9 +1,10 @@
 {
   "name": "invoke-before-after",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "a wrapper around your objects to invoke your methods by just their names",
-  "main": "./dist/src/index.js",
+  "main": "./dist/src/index.d.ts",
   "type": "commonjs",
+  "types": "./dist/src/index.js",
   "scripts": {
     "start": "node ./dist/src/index.js",
     "clean": "shx rm -rf dist/*",
