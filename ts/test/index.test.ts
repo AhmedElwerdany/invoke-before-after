@@ -1,14 +1,21 @@
 import { invokeMeWrapper } from '../src/index'
 
+let invokeAfterFn,invokeBeforeFn,shouldNotBeCalled,shouldReciveArguments;
+
+function setGlobalFunctions() { 
+    invokeAfterFn = jest.fn(() => 1)
+    invokeBeforeFn = jest.fn(() => 1)
+    shouldNotBeCalled = jest.fn(() => 1)
+    shouldReciveArguments = jest.fn((x) => x)
+}
+
+beforeEach(() => {
+    return setGlobalFunctions()
+})
+
 describe('invokeMeWrapper should work correctly', () => {
+
     describe('with classes', () => {
-
-        const invokeAfterFn = jest.fn(() => 1)
-        const invokeBeforeFn = jest.fn(() => 1)
-
-        const shouldNotBeCalled = jest.fn(() => 1)
-
-        const shouldReciveArguments = jest.fn((x) => x)
 
         class User {
             property = 'value'
@@ -67,6 +74,7 @@ describe('invokeMeWrapper should work correctly', () => {
         })
 
         it("should call 'invokeBefore' if exist", () => {
+            newUser.sayHi()
             expect(invokeBeforeFn.mock.calls.length).toBe(1)
         })
 
@@ -84,13 +92,6 @@ describe('invokeMeWrapper should work correctly', () => {
     })
 
     describe('with classes with options', () => {
-
-        const invokeAfterFn = jest.fn(() => 1)
-        const invokeBeforeFn = jest.fn(() => 1)
-
-        const shouldNotBeCalled = jest.fn(() => 1)
-
-        const shouldReciveArguments = jest.fn((x) => x)
 
         class User {
             property = 'value'
@@ -152,6 +153,7 @@ describe('invokeMeWrapper should work correctly', () => {
         })
 
         it("should call 'invokeAfter' if exist", () => {
+            newUser.sayHi()
             expect(invokeAfterFn.mock.calls.length).toBe(1)
         })
 
@@ -170,11 +172,6 @@ describe('invokeMeWrapper should work correctly', () => {
     })
 
     describe('with objects' , () => {
-
-        const invokeAfterFn = jest.fn(() => 1)
-        const invokeBeforeFn = jest.fn(() => 1)
-        const shouldNotBeCalled = jest.fn(() => 1)
-        const shouldReciveArguments = jest.fn((x) => x)
         
         const user = invokeMeWrapper({
             property: 'value',
@@ -200,8 +197,6 @@ describe('invokeMeWrapper should work correctly', () => {
                 shouldReciveArguments(name)
             },
         })
-
-
         
         it('should get property without invoking anything' , () => {
             const result = user.property
@@ -215,6 +210,7 @@ describe('invokeMeWrapper should work correctly', () => {
         })
 
         it("should call 'invokeAfter' if exist", () => {
+            user.sayHi()
             expect(invokeAfterFn.mock.calls.length).toBe(1)
         })
 

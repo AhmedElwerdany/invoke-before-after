@@ -13,7 +13,8 @@
     "watch": "tsc --watch",
     "pretest": "npm run prepack",
     "test": "jest --verbose",
-    "prepublish": "npm test"
+    "prepublish": "npm test",
+    "release" : "standard-version"
   },
   "keywords": [
     "proxy",

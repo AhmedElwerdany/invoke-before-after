@@ -1,3 +1,4 @@
 ts/
 coverage/
 dist/test/
+commitlint.config.js
