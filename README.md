@@ -3,7 +3,8 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/AhmedElwerdany/invoke-before-after?style=social)
 
 # invoke-before-after
-tell your methods when to invoke by just naming them
+Tell your methods when to invoke by just naming them.
+
 ## Installing
 Using npm:
 
@@ -13,19 +14,19 @@ npm install invoke-before-after
 
 ## API
 ##### invokeMeWrapper(target [, options])
-- `target` A class or object that its methods should be proxied
-- `options` <a href="#invokeMeWrapper-options">Options</a> to customize **invokeMeWrapper**
+- `target` : A class or object that its methods should be proxied.
+- `options` : <a href="#invokeMeWrapper-options">Options</a> to customize **invokeMeWrapper**
 
 
 #### <a name="invokeMeWrapper-options">options</a> : 
 
 | key |  description | default |
  -----|--------| --------|
-| invokeAfterName| the prefix of the method that should be invoked **after** the original method . <a href="#with-options">(see examples)</a> |invokeAfter|
-| invokeBeforeName|the prefix of the method that should be invoked **before** the original method .  <a href="#with-options">(see examples)</a>|invokeBefore|
+| invokeAfterName| The prefix of the method that should be invoked **after** the original method. <a href="#with-options">(see examples)</a> |invokeAfter|
+| invokeBeforeName| The prefix of the method that should be invoked **before** the original method.  <a href="#with-options">(see examples)</a>|invokeBefore|
 
 ## Example
-with classes :
+With classes :
 ```javascript
 import {invokeMeWrapper} from 'invoke-before-after'
 
@@ -58,7 +59,7 @@ newUser.updateName()
 
 ```
 
-with objects :
+With objects :
 
 ```javascript
 import {invokeMeWrapper} from 'invoke-before-after'
@@ -91,13 +92,13 @@ class User {
 
    _SayHi() {
       // should invoke after 'sayHi' method,
-      // since we choose '_' for 'invokeAfterName' 
+      // since we chose '_' for 'invokeAfterName' 
       console.log('I said hi :)')
    }
 
    $SayHi() {
       // should invoke before 'sayHi' method,
-      // since we choose '$' for 'invokeBeforeName' 
+      // since we chose '$' for 'invokeBeforeName' 
       console.log("I'm gonna say hi")
    }
 }
