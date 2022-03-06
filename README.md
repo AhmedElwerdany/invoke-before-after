@@ -117,3 +117,7 @@ dev.sayHi()
 // I said hi :)
 ```
 
+## Contributors
+<a href="https://github.com/AhmedElwerdany/invoke-before-after/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AhmedElwerdany/invoke-before-after" />
+</a>
