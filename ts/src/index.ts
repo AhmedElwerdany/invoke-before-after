@@ -1,13 +1,17 @@
+import { DEFAULT_OPTIONS, OptionsI } from "./constants";
 import { bind, camleCase, invokeSafe, join } from "./helpers";
+
 /**
  * 🟢 Wrapper for class
  * 🟢 Wrapper for an object
+ * 🟢 custome names for before and after
  * 🔴 Decorator for a class [soon]
- * 🔴 custome names for before and after [soon]
  */
-const InvokeMeProxyHandler = (options : invokeMeWrapperOptions) => ({
+
+const InvokeMeProxyHandler = (options : OptionsI) : ProxyHandler<object> => ({
   get(target, propKey: string, reciver) {
       const method = target[propKey];
+
       propKey = camleCase(propKey)
 
       // 🤨 [get] handler invoke in getting properties too.
@@ -35,24 +39,16 @@ const InvokeMeProxyHandler = (options : invokeMeWrapperOptions) => ({
     },
 })
 
-const InvokeMeProxyHandlerForClass = (options : invokeMeWrapperOptions) => ({
-  construct(target ,args : any[]) {
+const InvokeMeProxyHandlerForClass = (options : OptionsI): ProxyHandler<{new (...args: any[])} > => ({
+  construct(target, args : any[]) {
     return invokeMeWrapper(new target(...args), options)
   }
 })
 
 
-interface invokeMeWrapperOptions {
-  invokeAfterName: string;
-  invokeBeforeName: string;
-}
+function invokeMeWrapper<T> (object : Function | Object, options? : OptionsI) : any{
 
-function invokeMeWrapper (object : Function | Object, options? : invokeMeWrapperOptions) {
-
-  const defaultOptions : invokeMeWrapperOptions = {
-    invokeAfterName : 'invokeAfter',
-    invokeBeforeName: 'invokeBefore'
-  }
+  const defaultOptions : OptionsI = DEFAULT_OPTIONS
 
   options = {...defaultOptions, ...options}
 
