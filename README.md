@@ -22,9 +22,9 @@ npm install invoke-before-after
 
 | key |  description | default |
  -----|--------| --------|
-| invokeAfterName| The prefix of the method that should be invoked **after** the original method. <a href="#with-options">(see examples)</a> |invokeAfter|
-| invokeBeforeName| The prefix of the method that should be invoked **before** the original method.  <a href="#with-options">(see examples)</a>|invokeBefore|
-
+| invokeAfterName| The prefix of the method that should be invoked **after** the original method. <a href="#custom-names">(see examples)</a> |invokeAfter|
+| invokeBeforeName| The prefix of the method that should be invoked **before** the original method.  <a href="#custom-names">(see examples)</a>|invokeBefore|
+|disableCamelCase| disable the camelcase naming convention, so you don't have to uppercase the letter after _*invokeAfterName*_ or _*invokeAfterName*_  <a href="#disableCamelCase">(see examples)</a>| false 
 ## Example
 With classes :
 ```javascript
@@ -83,7 +83,9 @@ developer.sleep()
 // **sleeping**
 ```
 
-<a id="with-options">with options</a>
+### <a id="with-options">with options</a>
+
+<a id="custom-names">custom names :</a>
 ```javascript
 class User {
     sayHi() {
@@ -117,3 +119,31 @@ dev.sayHi()
 // I said hi :)
 ```
 
+<a id="disableCamelCase">Disable camelCase :</a>
+```javascript
+
+class User {
+   sayHi() {
+       console.log('saying hi')
+   }
+    // should invoke before 'sayHi' method,
+    // since we chose '_' for 'invokeAfterName' 
+    // and disable the camelcase naming convention
+   _sayHi(){
+       console.log('I said hi :)')
+   }
+}
+
+User = invokeMeWrapper(User, {
+   invokeAfterName: '_',
+   disableCamelCase: true
+})
+
+const dev = new User()
+dev.sayHi()
+
+// output: 
+// I'm gonna say hi
+// saying hi
+// I said hi :)
+```
