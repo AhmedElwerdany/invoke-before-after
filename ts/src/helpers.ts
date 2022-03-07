@@ -1,3 +1,4 @@
+import { OptionsI } from './constants';
 export const invokeSafe = (fn: Function): void => {
     try {
         fn()
@@ -22,3 +23,15 @@ export const camleCase = (string: string): string => {
 }
 
 export const join = (...args: any[]): string => args.join('')
+
+export const generateMethodName = (method_name: string, options: OptionsI): Omit<OptionsI, 'disableCamelCase'> => {
+    
+    if(options.disableCamelCase === false) {
+        method_name = camleCase(method_name)
+    }
+
+    return ({
+        invokeAfterName : join(options.invokeAfterName, method_name),
+        invokeBeforeName : join(options.invokeBeforeName, method_name),
+    })
+}
