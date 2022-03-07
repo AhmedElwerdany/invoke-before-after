@@ -24,7 +24,7 @@ npm install invoke-before-after
  -----|--------| --------|
 | invokeAfterName| The prefix of the method that should be invoked **after** the original method. <a href="#custom-names">(see examples)</a> |invokeAfter|
 | invokeBeforeName| The prefix of the method that should be invoked **before** the original method.  <a href="#custom-names">(see examples)</a>|invokeBefore|
-|disableCamelCase| disable the camelcase naming convention, so you don't have to uppercase the letter after _*invokeAfterName*_ or _*invokeAfterName*_  <a href="#disableCamelCase">(see examples)</a>| false 
+|disableCamelCase| disable the camelcase naming convention, so you don't have to uppercase the letter after _*invokeAfterName*_ or _*invokeAfterName*_  <a href="#disable-camelCase">(see examples)</a>| false 
 ## Example
 With classes :
 ```javascript
@@ -83,9 +83,9 @@ developer.sleep()
 // **sleeping**
 ```
 
-### <a id="with-options">with options</a>
+### with options
 
-<a id="custom-names">custom names :</a>
+<span id="custom-names">custom names :</span>
 ```javascript
 class User {
     sayHi() {
@@ -119,7 +119,7 @@ dev.sayHi()
 // I said hi :)
 ```
 
-<a id="disableCamelCase">Disable camelCase :</a>
+<span id="disable-camelCase">Disable camelCase :</span>
 ```javascript
 
 class User {
