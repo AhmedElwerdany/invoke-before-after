@@ -2,9 +2,9 @@
   "name": "invoke-before-after",
   "version": "1.2.2",
   "description": "tell your methods when to invoke by just naming them",
-  "main": "./dist/src/index.d.ts",
+  "main": "./dist/src/index.js",
   "type": "commonjs",
-  "types": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "start": "node ./dist/src/index.js",
     "clean": "shx rm -rf dist/*",
