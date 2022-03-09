@@ -1,5 +1,5 @@
 import { DEFAULT_OPTIONS, OptionsI } from "./constants";
-import { bind, camleCase, generateMethodName, invokeSafe, join } from "./helpers";
+import { bind, generateMethodName, invokeSafe } from "./helpers";
 
 const InvokeMeProxyHandler = (options : OptionsI) : ProxyHandler<object> => ({
   get(target, propKey: string, reciver) {
