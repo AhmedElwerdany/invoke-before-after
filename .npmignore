@@ -1,4 +1,12 @@
 ts/
 coverage/
 dist/test/
+dist/src/*.js.map
+.github/
 commitlint.config.js
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+jest.config.js
+tsconfig.json
+.eslintrc.js
+.eslintignore
