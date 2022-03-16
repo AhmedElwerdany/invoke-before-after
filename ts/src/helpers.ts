@@ -1,12 +1,24 @@
 import { OptionsI } from './constants';
-export const invokeSafe = (fn: Function): void => {
+
+
+export type anonymousFunction = () => void
+
+/**
+ * accept a potential function and try to invoke it in a safe way.
+ * @param {Function} fn - a function that needs to be invoked in a safe way
+ */
+export const invokeSafe = (fn: anonymousFunction): void => {
     try {
         fn()
     } catch {
+        /**
+         *
+         */
     }
 }
 
-export const bind = (fn: Function, reciver: Object, args: any[] = []): Function => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const bind = (fn: Function, reciver: object, args: any[] = []) => {
     if (typeof fn === 'function') {
         return fn.bind(reciver, ...args)
     }
@@ -22,16 +34,21 @@ export const camleCase = (string: string): string => {
     return firstLetter + restOfTheWord
 }
 
-export const join = (...args: any[]): string => args.join('')
+/**
+ * 
+ * @param args - a set of arguments that will be passed as array to be joined.
+ * @returns {string}  joined string
+ */
+export const join = (...args: string[]): string => args.join('')
 
 export const generateMethodName = (method_name: string, options: OptionsI): Omit<OptionsI, 'disableCamelCase'> => {
-    
-    if(options.disableCamelCase === false) {
+
+    if (options.disableCamelCase === false) {
         method_name = camleCase(method_name)
     }
 
     return ({
-        invokeAfterName : join(options.invokeAfterName, method_name),
-        invokeBeforeName : join(options.invokeBeforeName, method_name),
+        invokeAfterName: join(options.invokeAfterName, method_name),
+        invokeBeforeName: join(options.invokeBeforeName, method_name),
     })
 }
