@@ -1,6 +1,6 @@
 {
   "name": "invoke-before-after",
-  "version": "1.2.3",
+  "version": "1.3.0",
   "description": "tell your methods when to invoke by just naming them",
   "main": "./dist/src/index.js",
   "type": "commonjs",
@@ -15,7 +15,7 @@
     "test": "jest --verbose",
     "prepublish": "npm test",
     "release": "standard-version",
-    "eslint" : "eslint"
+    "eslint": "eslint"
   },
   "keywords": [
     "proxy",
