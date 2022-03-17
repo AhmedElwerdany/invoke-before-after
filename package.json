@@ -1,7 +1,7 @@
 {
   "name": "invoke-before-after",
   "version": "1.3.2",
-  "description": "tell your methods when to invoke by just naming them",
+  "description": "Tell your methods when to invoke by just naming them",
   "main": "./dist/src/index.js",
   "type": "commonjs",
   "types": "./dist/src/index.d.ts",
@@ -31,7 +31,10 @@
     "class",
     "invoke"
   ],
-  "author": "Ahmed Elwerdany",
+  "author": {
+    "name": "Ahmed Elwerdany",
+    "email": "infoalwerdany@gmail.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {

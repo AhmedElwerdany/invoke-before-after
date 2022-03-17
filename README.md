@@ -32,9 +32,6 @@ import {invokeMeWrapper} from 'invoke-before-after'
 wraps a target (class/object) with a special proxy/wrapper and provid it back to you as a class/object.
 the method inside your object or class can invoke dynamically (without you calling them).
 
-- `target` : A class or object that its methods should be proxied.
-- `options` : <a href="#invokeMeWrapper-options">Options</a> to customize **invokeMeWrapper**
-
 #### target : 
 A class or object that its methods should be proxied.
 
@@ -71,8 +68,6 @@ A class or object that its methods should be proxied.
 ## Example
 With classes :
 ```javascript
-import {invokeMeWrapper} from 'invoke-before-after'
-
 class User {
    constructor(name) {
       this.name = name;
@@ -83,6 +78,7 @@ class User {
       this.name = name;
       console.log('"name" updated')
    }
+   
    // this method will be invoked after "updateName" method,
    // since it has "invokeAfter" then the name of the method
    // as the first letter of that method is uppercased
@@ -93,7 +89,7 @@ class User {
 }
 
 const UserWrapper = invokeMeWrapper(User)
-const newUser = new UserWrapper('Ahmed')
+const newUser = new UserWrapper('Mark')
 
 newUser.updateName()
 // output : 
@@ -105,12 +101,11 @@ newUser.updateName()
 With objects :
 
 ```javascript
-import {invokeMeWrapper} from 'invoke-before-after'
-
 const developer = invokeMeWrapper({
     sleep: function () {
       console.log('**sleeping**')
     },
+    
     // this method will be invoked after "sleep" method,
     // since it has "invokeBefore" then the name of the method
     // as the first letter of that method is uppercased
@@ -131,21 +126,29 @@ developer.sleep()
 <span id="custom-names">custom names :</span>
 ```javascript
 class User {
-    sayHi() {
-         console.log('saying hi')
+    constructor(name) {
+      this.name = name
+      this.updatedAt = new Date().toLocaleDateString()
+   }
+   
+    updateName(name) {
+      this.name = name
+      console.log('"name" Updated')
     }
-
-   _SayHi() {
-      // should invoke after 'sayHi' method,
-      // since we chose '_' for 'invokeAfterName' 
-      console.log('I said hi :)')
+    
+    // should invoke before 'updateName' method,
+    // since we chose '$' for 'invokeBeforeName' 
+    $UpdateName(name) {
+      console.log(`I am about to update the name field with the value : ${name}`)
+    }
+   
+   // should invoke after 'updateName' method,
+   // since we chose '_' for 'invokeAfterName' 
+   _UpdateName(name) {
+      this.updatedAt = new Date().toLocaleDateString()
+      console.log('"updatedAt" updated')
    }
 
-   $SayHi() {
-      // should invoke before 'sayHi' method,
-      // since we chose '$' for 'invokeBeforeName' 
-      console.log("I'm gonna say hi")
-   }
 }
 
 const UserWrapper = invokeMeWrapper(User, {
@@ -153,13 +156,13 @@ const UserWrapper = invokeMeWrapper(User, {
     invokeBeforeName: '$',
 })
 
-const dev = new UserWrapper()
-dev.sayHi()
+const dev = new UserWrapper('Peter')
+dev.updateName('Mark')
 
 // output: 
-// I'm gonna say hi
-// saying hi
-// I said hi :)
+// I am about to update the name field with the value : Peter
+// "name" Updated
+// "updatedAt" updated
 ```
 
 <span id="disable-camelcase">Disable camelCase :</span>
@@ -169,9 +172,10 @@ class User {
    sayHi() {
        console.log('saying hi')
    }
-    // should invoke before 'sayHi' method,
-    // since we chose '_' for 'invokeAfterName' 
-    // and disable the camelcase naming convention
+   
+   // should invoke before 'sayHi' method,
+   // since we chose '_' for 'invokeAfterName' 
+   // and disable the camelcase naming convention
    _sayHi(){
        console.log('I said hi :)')
    }
