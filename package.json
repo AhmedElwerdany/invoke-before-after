@@ -1,7 +1,7 @@
 {
   "name": "invoke-before-after",
   "version": "1.3.4",
-  "description": "Tell your methods when to invoke by just naming them",
+  "description": "Tell your methods when to invoke by just naming them that way.",
   "main": "./dist/src/index.js",
   "type": "commonjs",
   "types": "./dist/src/index.d.ts",
@@ -18,10 +18,9 @@
     "eslint": "eslint"
   },
   "keywords": [
+    "hooks",
+    "hook",
     "proxy",
-    "invoke after",
-    "invoke before",
-    "invoke each",
     "watch",
     "function",
     "call",
