@@ -3,7 +3,7 @@
 <a href="https://github.com/AhmedElwerdany/invoke-before-after">![GitHub Repo stars](https://img.shields.io/github/stars/AhmedElwerdany/invoke-before-after?style=social) </a>
 
 # invoke-before-after
-Tell your methods when to invoke by just naming them.
+Tell your methods when to invoke by just naming them that way.
 
 ## why?
 - You want your methods to do only one thing.
@@ -139,7 +139,7 @@ class User {
     // should invoke before 'updateName' method,
     // since we chose '$' for 'invokeBeforeName' 
     $UpdateName(name) {
-      console.log(`I am about to update the name field with the value : ${name}`)
+      console.log(`new name : ${name}`)
     }
    
    // should invoke after 'updateName' method,
@@ -160,7 +160,7 @@ const dev = new UserWrapper('Peter')
 dev.updateName('Mark')
 
 // output: 
-// I am about to update the name field with the value : Peter
+// new name : Peter
 // "name" Updated
 // "updatedAt" updated
 ```
