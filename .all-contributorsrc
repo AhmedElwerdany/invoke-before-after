@@ -19,7 +19,8 @@
         "code",
         "bug",
         "maintenance",
-        "review"
+        "review",
+        "test"
       ]
     },
     {
