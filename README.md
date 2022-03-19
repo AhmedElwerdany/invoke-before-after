@@ -10,7 +10,7 @@ Tell your methods when to invoke by just naming them that way.
 
 ## why?
 - You want your methods to do only one thing.
-- Small <a href="https://bundlephobia.com/package/invoke-before-after@1.3.2">bundle size</a> (1.4kB MINIFIED) - (648B MINIFIED + GZIPPED).
+- Small <a href="https://bundlephobia.com/package/invoke-before-after">bundle size</a> (1.4kB MINIFIED) - (648B MINIFIED + GZIPPED).
 
 ## Installing
 Using npm:
