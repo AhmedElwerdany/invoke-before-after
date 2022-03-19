@@ -11,21 +11,22 @@
   "commitConvention": "angular",
   "contributors": [
     {
+      "login": "AhmedElwerdany",
+      "name": "Ahmed Elwerdany",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9258083?v=4",
+      "profile": "https://github.com/AhmedElwerdany",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
       "login": "EnigmaDamn",
       "name": "EnigmaDamn",
       "avatar_url": "https://avatars.githubusercontent.com/u/86964602?v=4",
       "profile": "https://github.com/EnigmaDamn",
       "contributions": [
         "doc"
-      ]
-    },
-    {
-      "login": "AhmedElwerdany",
-      "name": "Ahmed Elwerdany",
-      "avatar_url": "https://avatars.githubusercontent.com/u/9258083?v=4",
-      "profile": "https://github.com/AhmedElwerdany",
-      "contributions": [
-        "code"
       ]
     }
   ],
