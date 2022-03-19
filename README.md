@@ -1,6 +1,6 @@
 ![Codecov Coverage](https://img.shields.io/codecov/c/github/AhmedElwerdany/invoke-before-after)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![npm](https://img.shields.io/npm/v/invoke-before-after)
 <a href="https://github.com/AhmedElwerdany/invoke-before-after">![GitHub Repo stars](https://img.shields.io/github/stars/AhmedElwerdany/invoke-before-after?style=social) </a>
@@ -212,6 +212,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/AhmedElwerdany"><img src="https://avatars.githubusercontent.com/u/9258083?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ahmed Elwerdany</b></sub></a><br /><a href="https://github.com/AhmedElwerdany/invoke-before-after/commits?author=AhmedElwerdany" title="Code">💻</a> <a href="https://github.com/AhmedElwerdany/invoke-before-after/issues?q=author%3AAhmedElwerdany" title="Bug reports">🐛</a> <a href="#maintenance-AhmedElwerdany" title="Maintenance">🚧</a> <a href="https://github.com/AhmedElwerdany/invoke-before-after/pulls?q=is%3Apr+reviewed-by%3AAhmedElwerdany" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/AhmedElwerdany/invoke-before-after/commits?author=AhmedElwerdany" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/EnigmaDamn"><img src="https://avatars.githubusercontent.com/u/86964602?v=4?s=100" width="100px;" alt=""/><br /><sub><b>EnigmaDamn</b></sub></a><br /><a href="https://github.com/AhmedElwerdany/invoke-before-after/commits?author=EnigmaDamn" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/HritikR"><img src="https://avatars.githubusercontent.com/u/35923605?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hritik R</b></sub></a><br /><a href="#ideas-HritikR" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
