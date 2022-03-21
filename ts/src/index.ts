@@ -22,17 +22,17 @@ const objectProxyHandler = (options: OptionsI): ProxyHandler<object> => ({
         /**
          * generating two strings based on the options.
          * the two strings are representing the name of
-         * the methods that the user needs to invoke 
+         * the methods that the user needs to invoke
          * after or before the orignal method.
          */
         const { invokeAfterName, invokeBeforeName } = generateMethodName(propKey as keyof object, options)
         /**
-         * asuming these functions are exist, passing them the arguments that 
+         * asuming these functions are exist, passing them the arguments that
          * the orignal method recived is the right thing to do.
-         * if there is no function exist. the return value is 
-         * a function that throw an error. that will never be fired 
+         * if there is no function exist. the return value is
+         * a function that throw an error. that will never be fired
          * becuase we gonna invoke this function in a try catch block.
-         * with an empty catch block 
+         * with an empty catch block
          */
         const bindedBeforeFn = bind(target[invokeBeforeName as keyof object], reciver, args)
 
@@ -45,12 +45,12 @@ const objectProxyHandler = (options: OptionsI): ProxyHandler<object> => ({
         const result = value.apply(reciver, args)
 
         /**
-        * asuming these functions are exist, passing them the arguments that 
+        * asuming these functions are exist, passing them the arguments that
         * the orignal method recived is the right thing to do.
-        * if there is no function exist. the return value is 
-        * a function that throw an error. that will never be fired 
+        * if there is no function exist. the return value is
+        * a function that throw an error. that will never be fired
         * becuase we gonna invoke this function in a try catch steatmen.
-        * with an empty catch block 
+        * with an empty catch block
         */
         const bindedAfterFn = bind(target[invokeAfterName as keyof object], reciver, args)
 
@@ -86,7 +86,7 @@ const classProxyHandler = (options: OptionsI): ProxyHandler<{ new(...args: unkno
  * @param {Object | Function} target - A class or object that its methods should be proxied.
  * @param {typex} options - object contains options to customize the functionality wrapper.
  * @returns {Object} if the target is empty, it returns an empty object. otherwise a proxied target returned.
- * 
+ *
  */
 function invokeMeWrapper(target: { new(...args: unknown[]): object } | object, options?: OptionsI): object {
 

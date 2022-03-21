@@ -6,6 +6,7 @@ dist/src/*.js.map
 commitlint.config.js
 CHANGELOG.md
 CODE_OF_CONDUCT.md
+CONTRIBUTING.md
 jest.config.js
 tsconfig.json
 .eslintrc.js

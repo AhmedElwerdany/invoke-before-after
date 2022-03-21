@@ -20,7 +20,7 @@ npm install invoke-before-after
 ```
 
 ## Usage
-CommonJS: 
+
 ```js
 // CommonJS
 const {invokeMeWrapper} = require('invoke-before-after')
