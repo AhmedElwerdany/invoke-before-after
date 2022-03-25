@@ -74,11 +74,6 @@ const classProxyHandler = (options: OptionsI): ProxyHandler<{ new(...args: unkno
   }
 })
 
-
-/**
- * @typedef {{infokeBeforeName: number}} typex asd
- */
-
 /**
  * invokeMeWrapper function will wrap your target (class/object) with a special proxy/wrapper
  * and provid it back to you as a class/object. the method inside your object or class
