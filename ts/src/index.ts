@@ -1,5 +1,5 @@
-import { DEFAULT_OPTIONS, OptionsI } from "./constants";
-import { bind, generateMethodName, invokeSafe } from "./helpers";
+import { DEFAULT_OPTIONS, OptionsI } from './constants';
+import { bind, generateMethodName, invokeSafe } from './helpers';
 
 const objectProxyHandler = (options: OptionsI): ProxyHandler<object> => ({
   get(target, propKey, reciver) {
@@ -7,13 +7,13 @@ const objectProxyHandler = (options: OptionsI): ProxyHandler<object> => ({
     const value: unknown = target[propKey as keyof object]
 
     /**
-    * [[get]] handler invoke in getting properties too.
+    * [[get]] handler. invoke in getting properties too.
     * so we need to check the type
     */
 
     if (typeof value === "function") {
       /**
-       * the return value is a function, becuase the
+       * the return value is a function, because the
        * user tried to get a function in the first place.
        * pass the function all the arguments that the user
        * passed when he/she tried to call the method.
@@ -23,40 +23,40 @@ const objectProxyHandler = (options: OptionsI): ProxyHandler<object> => ({
          * generating two strings based on the options.
          * the two strings are representing the name of
          * the methods that the user needs to invoke
-         * after or before the orignal method.
+         * after or before the original method.
          */
         const { invokeAfterName, invokeBeforeName } = generateMethodName(propKey as keyof object, options)
         /**
-         * asuming these functions are exist, passing them the arguments that
-         * the orignal method recived is the right thing to do.
-         * if there is no function exist. the return value is
-         * a function that throw an error. that will never be fired
-         * becuase we gonna invoke this function in a try catch block.
+         * assuming these functions exist, passing them the arguments that
+         * the original method received is the right thing to do.
+         * if there is no function exists. the return value is
+         * a function that throws an error. that will never be fired
+         * because  we gonna invoke this function in a try-catch block.
          * with an empty catch block
          */
         const bindedBeforeFn = bind(target[invokeBeforeName as keyof object], reciver, args)
 
         /**
-        * passing the name of the function to be invoked in a safe way.
-        * in a try catch block, with an empty catch block.
+        * passing the name of the function to be invoked safely.
+        * in a try-catch block, with an empty catch block.
         */
         invokeSafe(bindedBeforeFn)
 
         const result = value.apply(reciver, args)
 
         /**
-        * asuming these functions are exist, passing them the arguments that
-        * the orignal method recived is the right thing to do.
-        * if there is no function exist. the return value is
-        * a function that throw an error. that will never be fired
-        * becuase we gonna invoke this function in a try catch steatmen.
-        * with an empty catch block
-        */
+         * assuming these functions exist, passing them the arguments that
+         * the original method received is the right thing to do.
+         * if there is no function exists. the return value is
+         * a function that throws an error. that will never be fired
+         * because  we gonna invoke this function in a try-catch block.
+         * with an empty catch block
+         */
         const bindedAfterFn = bind(target[invokeAfterName as keyof object], reciver, args)
 
         /**
-         * passing the name of the function to be invoked in a safe way.
-         * in a try catch block, with an empty catch block.
+         * passing the name of the function to be invoked safely.
+         * in a try-catch block, with an empty catch block.
          */
         invokeSafe(bindedAfterFn)
 

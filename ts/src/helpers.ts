@@ -4,7 +4,7 @@ import { OptionsI } from './constants';
 export type anonymousFunction = () => void
 
 /**
- * accept a potential function and try to invoke it in a safe way.
+ * Accept a potential function and try to invoke it safely.
  * @param {Function} fn - a function that needs to be invoked in a safe way
  */
 export const invokeSafe = (fn: anonymousFunction): void => {
@@ -17,7 +17,7 @@ export const invokeSafe = (fn: anonymousFunction): void => {
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
 export const bind = (fn: Function, reciver: object, args: any[] = []) => {
     if (typeof fn === 'function') {
         return fn.bind(reciver, ...args)
