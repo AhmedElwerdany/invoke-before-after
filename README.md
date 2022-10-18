@@ -47,7 +47,8 @@ A class or object that its methods should be proxied.
   
   A prefix for methods' name that should invoke **after** the targeted method.
   
-  Assuming the targeted method is `getUsers`, and the **prefix** is `invokeAfter`. Then a method called `invokeAfterGetUsers` will invoke automatically after `getUsers` get invoked.
+  Assuming the targeted method is `getUsers`, and the **prefix** is `invokeAfter`.  
+  Then a method called `invokeAfterGetUsers` will invoke automatically after `getUsers` get invoked.
   
 - <a href='#custom-names'>`invokeBeforeName`</a>
 
@@ -56,16 +57,18 @@ A class or object that its methods should be proxied.
   
   A prefix for methods' name that should invoke **before** the targeted method.
   
-  Assuming the targeted method is `getUsers`, and the **prefix** is `invokeBefore`. Then a method called `invokeBeforeGetUsers` will invoke automatically before `getUsers` get invoked.
+  Assuming the targeted method is `getUsers`, and the **prefix** is `invokeBefore`.  
+  Then a method called `invokeBeforeGetUsers` will invoke automatically before `getUsers` get invoked.
 
 - <a href="#disable-camelcase">`disableCamelCase`</a>
 
   - Type: `boolean`
   - Default: `false`
   
-  By default, the letter after the prefix should be uppercase. Set this to `true` will add the name of the targeted method as it is after the prefix.
+  By default, the letter after the prefix should be uppercase.  
+  Set this to `true` will add the name of the targeted method as it is after the prefix.
   
-  Assuming the targeted method is `getUsers`, and the **prefix** of `invokeAfterName` is `invokeAfter`.
+  Assuming the targeted method is `getUsers`, and the **prefix** of `invokeAfterName` is `invokeAfter`.  
   Set `disableCamelCase` to true will make `invokeAftergetUsers` the right function to invoke after `getUsers` instead of `invokeAfterGetUsers`.
 
 ## Example
