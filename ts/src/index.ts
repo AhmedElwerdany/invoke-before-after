@@ -26,6 +26,13 @@ const objectProxyHandler = (options: OptionsI): ProxyHandler<object> => ({
          * after or before the original method.
          */
         const { invokeAfterName, invokeBeforeName } = generateMethodName(propKey as keyof object, options)
+        
+        /**
+         * invoke before each
+         */
+        const bindedBeforeEach = bind(target[options.invokeBeforeName as keyof object], reciver, args)
+        invokeSafe(bindedBeforeEach)
+
         /**
          * assuming these functions exist, passing them the arguments that
          * the original method received is the right thing to do.
@@ -43,6 +50,12 @@ const objectProxyHandler = (options: OptionsI): ProxyHandler<object> => ({
         invokeSafe(bindedBeforeFn)
 
         const result = value.apply(reciver, args)
+
+        /**
+         * invoke after each
+         */
+        const bindedAfterEach = bind(target[options.invokeAfterName as keyof object], reciver, args)
+        invokeSafe(bindedAfterEach)
 
         /**
          * assuming these functions exist, passing them the arguments that
@@ -70,7 +83,7 @@ const objectProxyHandler = (options: OptionsI): ProxyHandler<object> => ({
 
 const classProxyHandler = (options: OptionsI): ProxyHandler<{ new(...args: unknown[]): object }> => ({
   construct(Target, args: unknown[]) {
-    return invokeMeWrapper(new Target(...args), options)
+    return invokeWrapper(new Target(...args), options)
   }
 })
 
@@ -83,7 +96,7 @@ const classProxyHandler = (options: OptionsI): ProxyHandler<{ new(...args: unkno
  * @returns {Object} if the target is empty, it returns an empty object. otherwise a proxied target returned.
  *
  */
-function invokeMeWrapper(target: { new(...args: unknown[]): object } | object, options?: OptionsI): object {
+function invokeWrapper(target: { new(...args: unknown[]): object } | object, options?: OptionsI): object {
 
   const defaultOptions: OptionsI = DEFAULT_OPTIONS
 
@@ -101,4 +114,4 @@ function invokeMeWrapper(target: { new(...args: unknown[]): object } | object, o
 
 }
 
-export { invokeMeWrapper }
+export default invokeWrapper
