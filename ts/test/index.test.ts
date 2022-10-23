@@ -1,8 +1,8 @@
+import invokeWrapper from '../src';
 import { DEFAULT_OPTIONS } from './../src/constants';
-import { invokeMeWrapper } from '../src/index'
 
 // global functions
-let invokeAfterFn, invokeBeforeFn;
+let invokeAfterFn, invokeBeforeFn, invokeBeforeEachFn, invokeAfterEachFn;
 
 // global class
 let Class, newObject, ClassWrapper;
@@ -26,6 +26,28 @@ function setGlobalClass() {
         method(...args) {
             return true
         }
+
+
+        invokeBefore(...args) {
+            invokeBeforeEachFn(...args, 'invokeBefore')
+        }
+
+        invokeAfter(...args) {
+            invokeAfterEachFn(...args, 'invokeAfter')
+        }
+        
+        /**
+         * ! custom names
+        */
+
+        $(...args) {
+            invokeBeforeEachFn(...args, '$')
+        }
+
+        _(...args) {
+            invokeAfterEachFn(...args, '_')
+        }
+
         /**
          * ! default names with camelcase as a naming convention
          */
@@ -73,11 +95,11 @@ function setGlobalClass() {
 }
 
 function setWrapper() {
-    ClassWrapper = invokeMeWrapper(Class)
+    ClassWrapper = invokeWrapper(Class)
 }
 
 function setWrapperWithOptions(options) {
-    ClassWrapper = invokeMeWrapper(Class, options)
+    ClassWrapper = invokeWrapper(Class, options)
 }
 
 
@@ -100,24 +122,26 @@ function setClassTest(options) {
 
 function setObjectTest(options) {
     setGlobalClass()
-    if(options) {
-        newObject = invokeMeWrapper(new Class(), options)
-    }else {
-        newObject = invokeMeWrapper(new Class())
+    if (options) {
+        newObject = invokeWrapper(new Class(), options)
+    } else {
+        newObject = invokeWrapper(new Class())
     }
 }
 
 const types = ['class', 'object']
 
-for(let type of types) {
+for (const type of types) {
     describe.each(
         [
             {
                 type,
                 options: null,
-                expected : {
+                expected: {
+                    invokeBeforeName: 'invokeBeforeMethod',
                     invokeAfterName: 'invokeAfterMethod',
-                    invokeBeforeName: 'invokeBeforeMethod'
+                    invokeBeforeEachName: 'invokeBefore',
+                    invokeAfterEachName: 'invokeAfter',
                 }
             },
             {
@@ -125,11 +149,13 @@ for(let type of types) {
                 options: {
                     disableCamelCase: true
                 },
-                expected : {
+                expected: {
                     invokeAfterName: 'invokeAftermethod',
-                    invokeBeforeName: 'invokeBeforemethod'
+                    invokeBeforeName: 'invokeBeforemethod',
+                    invokeBeforeEachName: 'invokeBefore',
+                    invokeAfterEachName: 'invokeAfter',
                 },
-    
+
             },
             {
                 type,
@@ -137,9 +163,11 @@ for(let type of types) {
                     invokeAfterName: '_',
                     invokeBeforeName: '$'
                 },
-                expected : {
+                expected: {
                     invokeAfterName: '_Method',
-                    invokeBeforeName: '$Method'
+                    invokeBeforeName: '$Method',
+                    invokeBeforeEachName: '_',
+                    invokeAfterEachName: '$',
                 },
             },
             {
@@ -149,59 +177,79 @@ for(let type of types) {
                     invokeBeforeName: '$',
                     disableCamelCase: true
                 },
-                expected : {
+                expected: {
                     invokeAfterName: '_method',
-                    invokeBeforeName: '$method'
+                    invokeBeforeName: '$method',
+                    invokeBeforeEachName: '_',
+                    invokeAfterEachName: '$',
                 },
             }
         ])('test: $type , with options: $options', ({ type, options, expected }) => {
             // if options provided, merge it (custom options) with DEFAULT_OPTIONS 
             // if not, options is DEFAULT_OPTIONS
-            options = options ? {...DEFAULT_OPTIONS, ...options} : DEFAULT_OPTIONS
-    
+            options = options ? { ...DEFAULT_OPTIONS, ...options } : DEFAULT_OPTIONS
+
             // making the class
             beforeAll(() => {
-                if(type === 'class') {
+                if (type === 'class') {
                     setClassTest(options)
                 } else {
                     setObjectTest(options)
                 }
             })
-    
+
             beforeEach(() => {
-                invokeAfterFn = jest.fn((x) => x)
                 invokeBeforeFn = jest.fn((x) => x)
+                invokeBeforeEachFn = jest.fn((x) => x)
+                invokeAfterFn = jest.fn((x) => x)
+                invokeAfterEachFn = jest.fn((x) => x)
             })
-    
+
             afterEach(() => {
                 jest.resetAllMocks()
             })
-    
+
             it('should get property without invoking anything', () => {
                 const result = newObject.property
                 expect(invokeAfterFn.mock.calls.length).toBe(0)
                 expect(invokeBeforeFn.mock.calls.length).toBe(0)
             })
-          
-            it(`should call '${expected.invokeAfterName}' if exist`, () => {
-                    newObject.method()
-                    expect(invokeAfterFn.mock.calls.length).toBe(1)
-                    expect(invokeAfterFn.mock.calls[0][0]).toBe(expected.invokeAfterName)
+
+            it(`should call ${expected.invokeBeforeEachName} before each call`, () => {
+                newObject.method()
+                expect(invokeBeforeEachFn.mock.calls.length).toBe(1)
+                newObject.method()
+                newObject.method()
+                expect(invokeBeforeEachFn.mock.calls.length).toBe(3)
             })
-    
+
+            it(`should call ${expected.invokeAfterEachName} after each call`, () => {
+                newObject.method()
+                expect(invokeAfterEachFn.mock.calls.length).toBe(1)
+                newObject.method()
+                newObject.method()
+                expect(invokeAfterEachFn.mock.calls.length).toBe(3)
+            })
+
+            it(`should call '${expected.invokeAfterName}' if exist`, () => {
+                newObject.method()
+                expect(invokeAfterFn.mock.calls.length).toBe(1)
+                expect(invokeAfterFn.mock.calls[0][0]).toBe(expected.invokeAfterName)
+            })
+
             it(`should call '${expected.invokeBeforeName}' if exist`, () => {
                 newObject.method()
                 expect(invokeBeforeFn.mock.calls[0][0]).toBe(expected.invokeBeforeName)
             })
-    
+
             it('should pass arguments', () => {
                 newObject.method('test_arguments')
                 expect(invokeAfterFn.mock.calls[0][0]).toBe('test_arguments')
                 expect(invokeAfterFn.mock.calls[0][1]).toBe(expected.invokeAfterName)
-    
+
                 expect(invokeBeforeFn.mock.calls[0][0]).toBe('test_arguments')
                 expect(invokeBeforeFn.mock.calls[0][1]).toBe(expected.invokeBeforeName)
             })
-    
+
         })
 }
