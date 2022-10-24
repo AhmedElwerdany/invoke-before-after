@@ -1,7 +1,4 @@
 ![Codecov Coverage](https://img.shields.io/codecov/c/github/AhmedElwerdany/invoke-before-after)
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![npm](https://img.shields.io/npm/v/invoke-before-after)
 <a href="https://github.com/AhmedElwerdany/invoke-before-after">![GitHub Repo stars](https://img.shields.io/github/stars/AhmedElwerdany/invoke-before-after?style=social) </a>
 
@@ -23,22 +20,21 @@ npm install invoke-before-after
 
 ```js
 // CommonJS
-const {invokeMeWrapper} = require('invoke-before-after')
+const invokeWrapper = require('invoke-before-after')
 
 // ES modules
-import {invokeMeWrapper} from 'invoke-before-after'
+import invokeWrapper from 'invoke-before-after'
 ```
 
 ## API
-### invokeMeWrapper(target, [options])
+### invokeWrapper(target, [options])
 
-wraps a target (class/object) with a special proxy/wrapper and provid it back to you as a class/object.
-the method inside your object or class can invoke dynamically (without you calling them).
+Wraps a target (class/object) with a special proxy/wrapper and provides it back to you as a class/object. the method inside your object or class can invoke dynamically (without you calling them).
 
 #### target : 
 A class or object that its methods should be proxied.
 
-#### <a name="invokeMeWrapper-options">options</a> : 
+#### <a name="invokeWrapper-options">options</a> : 
 
 - <a href='#custom-names'>`invokeAfterName`</a>
 
@@ -94,7 +90,7 @@ class User {
    }
 }
 
-const UserWrapper = invokeMeWrapper(User)
+const UserWrapper = invokeWrapper(User)
 const newUser = new UserWrapper('Mark')
 
 newUser.updateName()
@@ -107,7 +103,7 @@ newUser.updateName()
 With objects :
 
 ```javascript
-const developer = invokeMeWrapper({
+const developer = invokeWrapper({
     sleep: function () {
       console.log('**sleeping**')
     },
@@ -157,7 +153,7 @@ class User {
 
 }
 
-const UserWrapper = invokeMeWrapper(User, {
+const UserWrapper = invokeWrapper(User, {
     invokeAfterName: '_',
     invokeBeforeName: '$',
 })
@@ -187,7 +183,7 @@ class User {
    }
 }
 
-User = invokeMeWrapper(User, {
+User = invokeWrapper(User, {
    invokeAfterName: '_',
    disableCamelCase: true
 })
